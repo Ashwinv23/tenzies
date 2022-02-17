@@ -7,7 +7,10 @@ function App() {
     let values = [];
     for (let i = 0; i < 10; i++) {
       let randVal = Math.floor(Math.random() * 6 + 1);
-      values.push(randVal);
+      values.push({
+        value: randVal,
+        isHeld: false,
+      });
     }
     return values;
   };
@@ -15,7 +18,10 @@ function App() {
   const rollDice = () => {
     setDice(newDice());
   };
+
   const [dice, setDice] = useState(newDice());
+  const diceValue = dice.keys;
+  console.log(diceValue);
 
   return (
     <main className="outer">
