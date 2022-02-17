@@ -3,20 +3,20 @@ import Dice from "./Dice";
 import "./App.css";
 
 function App() {
+  let values = [];
+  for (let i = 0; i < 10; i++) {
+    let randVal = Math.floor(Math.random() * 6 + 1);
+    values.push(randVal);
+  }
+  console.log(values);
+
   return (
     <main className="outer">
       <div className="inner">
         <div className="dice-container">
-          <Dice value={1} />
-          <Dice value={4} />
-          <Dice value={6} />
-          <Dice value={2} />
-          <Dice value={5} />
-          <Dice value={3} />
-          <Dice value={6} />
-          <Dice value={1} />
-          <Dice value={4} />
-          <Dice value={5} />
+          {values.map((val, index) => (
+            <Dice key={index} value={val} />
+          ))}
         </div>
       </div>
     </main>
