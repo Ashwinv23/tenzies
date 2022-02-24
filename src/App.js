@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dice from "./Dice";
 import "./App.css";
+import { nanoid } from "nanoid";
 
 function App() {
   const newDice = () => {
@@ -10,6 +11,7 @@ function App() {
       values.push({
         value: randVal,
         isHeld: false,
+        id: nanoid(),
       });
     }
     return values;
@@ -21,12 +23,25 @@ function App() {
 
   const [dice, setDice] = useState(newDice());
 
+  const holdDice = (id) => {
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      })
+    );
+  };
+
   return (
     <main className="outer">
       <div className="inner">
         <div className="dice-container">
-          {dice.map((val, index) => (
-            <Dice key={index} {...val} />
+          {dice.map((val) => (
+            <Dice
+              key={val.id}
+              value={val.value}
+              isHeld={val.isHeld}
+              holdDice={() => holdDice(val.id)}
+            />
           ))}
         </div>
       </div>
