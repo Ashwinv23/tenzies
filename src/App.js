@@ -4,21 +4,29 @@ import "./App.css";
 import { nanoid } from "nanoid";
 
 function App() {
+  const generateNewDie = () => {
+    let randVal = Math.floor(Math.random() * 6 + 1);
+    return {
+      value: randVal,
+      isHeld: false,
+      id: nanoid(),
+    };
+  };
+
   const newDice = () => {
     let values = [];
     for (let i = 0; i < 10; i++) {
-      let randVal = Math.floor(Math.random() * 6 + 1);
-      values.push({
-        value: randVal,
-        isHeld: false,
-        id: nanoid(),
-      });
+      values.push(generateNewDie());
     }
     return values;
   };
 
   const rollDice = () => {
-    setDice(newDice());
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        return die.isHeld ? die : generateNewDie();
+      })
+    );
   };
 
   const [dice, setDice] = useState(newDice());
@@ -34,6 +42,11 @@ function App() {
   return (
     <main className="outer">
       <div className="inner">
+        <h1 className="title">Tenzies</h1>
+        <p className="instructions">
+          Roll until all dice are the same. Click each die to freeze it at its
+          current value between rolls.
+        </p>
         <div className="dice-container">
           {dice.map((val) => (
             <Dice
