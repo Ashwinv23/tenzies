@@ -20,15 +20,13 @@ function App() {
   };
 
   const [dice, setDice] = useState(newDice());
-  const diceValue = dice.keys;
-  console.log(diceValue);
 
   return (
     <main className="outer">
       <div className="inner">
         <div className="dice-container">
           {dice.map((val, index) => (
-            <Dice key={index} value={val} />
+            <Dice key={index} value={val.value} />
           ))}
         </div>
       </div>
