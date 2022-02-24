@@ -26,7 +26,7 @@ function App() {
       <div className="inner">
         <div className="dice-container">
           {dice.map((val, index) => (
-            <Dice key={index} value={val.value} />
+            <Dice key={index} {...val} />
           ))}
         </div>
       </div>
