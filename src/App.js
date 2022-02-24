@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dice from "./Dice";
 import "./App.css";
 import { nanoid } from "nanoid";
 
 function App() {
+  const [tenzies, setTenzies] = useState(false);
+
   const generateNewDie = () => {
     let randVal = Math.floor(Math.random() * 6 + 1);
     return {
@@ -29,7 +31,19 @@ function App() {
     );
   };
 
+  const allEqual = (arr) => arr.every((val) => val === arr[0]);
+
   const [dice, setDice] = useState(newDice());
+
+  useEffect(() => {
+    let allHeld = dice.every((die) => die.isHeld);
+    const values = dice.map((die) => die.value);
+    const allSame = allEqual(values);
+    if (allHeld && allSame) {
+      setTenzies(true);
+      console.log("Yayyy!! You WON!!!");
+    }
+  }, [dice]);
 
   const holdDice = (id) => {
     setDice((prevDice) =>
