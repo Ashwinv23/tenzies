@@ -71,15 +71,15 @@ body {
 }
 
 .roll {
-  background-color: #5035ff;
-  color: white;
-  width: 100px;
-  height: 50.84px;
+  /* background-color: #5035ff; */
+  /* color: white; */
+  /* width: 100px;
+  height: 50.84px; */
   font-size: 1.5rem;
-  box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
-  border-radius: 3.81277px;
+  /* box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18); */
+  /* border-radius: 3.81277px; */
   position: absolute;
-  left: 40%;
+  left: 43%;
   top: 73%;
   cursor: pointer;
 }

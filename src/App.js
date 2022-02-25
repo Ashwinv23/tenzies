@@ -3,6 +3,7 @@ import Dice from "./Dice";
 import "./App.css";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
+import diceImg from "./dice.png";
 
 function App() {
   const [tenzies, setTenzies] = useState(false);
@@ -76,9 +77,12 @@ function App() {
           ))}
         </div>
       </div>
-      <button className="roll" onClick={rollDice}>
+      {/* <button className="roll" onClick={rollDice}>
         {tenzies ? <div style={{ fontSize: "1rem" }}>New Game</div> : "Roll"}
-      </button>
+      </button> */}
+      <div className="roll" onClick={rollDice}>
+        <img src={diceImg} alt="dice" />
+      </div>
     </main>
   );
 }
