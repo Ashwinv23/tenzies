@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Dice from "./Dice";
 import "./App.css";
 import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 
 function App() {
   const [tenzies, setTenzies] = useState(false);
@@ -44,10 +45,7 @@ function App() {
     let allHeld = dice.every((die) => die.isHeld);
     const values = dice.map((die) => die.value);
     const allSame = allEqual(values);
-    if (allHeld && allSame) {
-      setTenzies(true);
-      console.log("Yayyy!! You WON!!!");
-    }
+    if (allHeld && allSame) setTenzies(true);
   }, [dice]);
 
   const holdDice = (id) => {
@@ -61,6 +59,7 @@ function App() {
   return (
     <main className="outer">
       <div className="inner">
+        {tenzies && <Confetti />}
         <h1 className="title">Tenzies</h1>
         <p className="instructions">
           Roll until all dice are the same. Click each die to freeze it at its
