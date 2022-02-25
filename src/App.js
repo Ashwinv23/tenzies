@@ -24,11 +24,16 @@ function App() {
   };
 
   const rollDice = () => {
-    setDice((prevDice) =>
-      prevDice.map((die) => {
-        return die.isHeld ? die : generateNewDie();
-      })
-    );
+    if (tenzies) {
+      setDice(newDice());
+      setTenzies(false);
+    } else {
+      setDice((prevDice) =>
+        prevDice.map((die) => {
+          return die.isHeld ? die : generateNewDie();
+        })
+      );
+    }
   };
 
   const allEqual = (arr) => arr.every((val) => val === arr[0]);
@@ -73,7 +78,7 @@ function App() {
         </div>
       </div>
       <button className="roll" onClick={rollDice}>
-        Roll
+        {tenzies ? <div style={{ fontSize: "1rem" }}>New Game</div> : "Roll"}
       </button>
     </main>
   );
